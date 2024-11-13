@@ -7,17 +7,17 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
 
-# chrome_options = webdriver.ChromeOptions()
-# chrome_options.add_argument("--headless")  # Run in headless mode
-# chrome_options.add_argument("--disable-gpu")  # Disable GPU usage in headless
-# chrome_options.add_argument("--enable-unsafe-webgl")  # Enable unsafe WebGL
-# chrome_options.add_argument(
-#     "--enable-unsafe-swiftshader"
-# )  # Optional: avoid issues in some setups
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument("--headless")  # Run in headless mode
+chrome_options.add_argument("--disable-gpu")  # Disable GPU usage in headless
+chrome_options.add_argument("--enable-unsafe-webgl")  # Enable unsafe WebGL
+chrome_options.add_argument(
+    "--enable-unsafe-swiftshader"
+)  # Optional: avoid issues in some setups
 
 # Initialize the WebDriver with Chrome options
-driver = webdriver.Chrome()
-# driver = webdriver.Chrome(options=chrome_options)
+# driver = webdriver.Chrome()
+driver = webdriver.Chrome(options=chrome_options)
 
 
 def addCookie():
