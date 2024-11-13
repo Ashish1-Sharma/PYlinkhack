@@ -138,7 +138,7 @@ def handleMessageWorking(agency_links):
 
             textarea = driver.find_element(By.ID, "org-message-page-modal-message")
             textarea.send_keys(
-                "I am Abhishek Kumar, a detail-oriented UI/UX Designer with a background in Full Stack Development. Currently pursuing a Bachelor's in Computer Science, I have hands-on experience in designing user-centric interfaces, improving website functionality, and enhancing user engagement. Through internships at companies like Robust Results Pvt. Ltd. and Metaphile Pvt. Ltd., I've gained expertise in UI/UX design, WordPress development, and front-end technologies such as HTML, CSS, React, and Figma. I am passionate about creating intuitive, responsive designs that drive user satisfaction and system performance."
+                "I am Abhishek Kumar, a detail-oriented UI/UX Designer with a background in Frontend developer and wordpress developer . Currently pursuing a Bachelor's in Computer Science, I have hands-on experience in designing user-centric interfaces, improving website functionality, and enhancing user engagement. Through internships at companies like Metaphile Pvt. Ltd. and UigGeeks Pvt. Ltd. I've gained expertise in UI/UX design, WordPress development, and front-end technologies such as HTML, CSS Tailwind, React-JS, Figma and Wordpress. I am passionate about creating intuitive, responsive designs that drive user satisfaction and system performance."
             )
 
             print("Text message set successfully")
