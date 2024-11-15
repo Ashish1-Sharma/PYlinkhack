@@ -18,8 +18,8 @@ chrome_options = webdriver.ChromeOptions()
 with open("config.json" , 'r') as file:
     data = json.load(file)
 # Initialize the WebDriver with Chrome options
-driver = webdriver.Chrome()
-# driver = webdriver.Chrome(options=chrome_options)
+# driver = webdriver.Chrome()
+driver = webdriver.Chrome(options=chrome_options)
 
 
 def addCookie():
