@@ -6,8 +6,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
-
-# chrome_options = webdriver.ChromeOptions()
+import json
+chrome_options = webdriver.ChromeOptions()
 # chrome_options.add_argument("--headless")  # Run in headless mode
 # chrome_options.add_argument("--disable-gpu")  # Disable GPU usage in headless
 # chrome_options.add_argument("--enable-unsafe-webgl")  # Enable unsafe WebGL
@@ -15,17 +15,19 @@ from selenium.webdriver.support import expected_conditions as EC
 #     "--enable-unsafe-swiftshader"
 # )  # Optional: avoid issues in some setups
 
+with open("config.json" , 'r') as file:
+    data = json.load(file)
 # Initialize the WebDriver with Chrome options
 driver = webdriver.Chrome()
 # driver = webdriver.Chrome(options=chrome_options)
 
 
 def addCookie():
-    driver.add_cookie({"name": "JSESSIONID", "value": '"ajax:1707200517968142314"'})
+    driver.add_cookie({"name": "JSESSIONID", "value": data["JSESSIONID"]})
     driver.add_cookie(
         {
             "name": "li_at",
-            "value": "AQEDAThJHhYC2Z7yAAABkuIMwvQAAAGTK09QmU4AcXFuh736f5WyqPDJD6WxRRncX2xTnBA9JN5GCO3J6ekWzthl_oC514flNVO5QFRDnE-oI94tsrokAygxl4ie-YQOIjBSkFOlLWYOPp9XWwG8T5L2",
+            "value": data["li_at"],
         }
     )
 
@@ -39,7 +41,7 @@ def extractUsersProfile():
         # print(f'👌{element.text}')
         for post_item in post_list:
             if (
-                "UI/UX" in post_item.text.lower()
+                data['Interest'] in post_item.text.lower()
             ):  # Use lower() to ensure case-insensitivity
                 continue
             try:
@@ -117,7 +119,7 @@ import random
 def handleMessageWorking(agency_links):
     for single_link in agency_links:
         driver.get(single_link)
-        time.sleep(random.uniform(2, 5))
+        time.sleep(random.uniform(1,3))
 
         try:
             message_button = driver.find_element(
@@ -128,7 +130,7 @@ def handleMessageWorking(agency_links):
                 continue  # Skip if the button is not found
 
             message_button.click()
-            time.sleep(random.uniform(2, 5))
+            time.sleep(random.uniform(1, 3))
 
             dropdown = driver.find_element(By.ID, "org-message-page-modal-conversation-topic")
             print("Dropdown found successfully")
@@ -137,17 +139,15 @@ def handleMessageWorking(agency_links):
             print("Career selection found successfully")
 
             textarea = driver.find_element(By.ID, "org-message-page-modal-message")
-            textarea.send_keys(
-                "I am Abhishek Kumar, a detail-oriented UI/UX Designer with a background in Full Stack Development. Currently pursuing a Bachelor's in Computer Science, I have hands-on experience in designing user-centric interfaces, improving website functionality, and enhancing user engagement. Through internships at companies like Robust Results Pvt. Ltd. and Metaphile Pvt. Ltd., I've gained expertise in UI/UX design, WordPress development, and front-end technologies such as HTML, CSS, React, and Figma. I am passionate about creating intuitive, responsive designs that drive user satisfaction and system performance."
-            )
+            textarea.send_keys(data["Message"])
 
             print("Text message set successfully")
-            time.sleep(random.uniform(2, 5))
+            time.sleep(random.uniform(1,3))
 
             span_element = driver.find_element(By.XPATH, "//span[text()='Send message']")
             button = span_element.find_element(By.XPATH, "..")  # Get parent button
             button.click()
-            time.sleep(4)
+            time.sleep(2)
 
         except NoSuchElementException:
             print("Message button or other element not found, skipping to next link.")
